@@ -4,8 +4,15 @@ const app = express();
 const port = 3005;
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const path = require('path');
+
 app.use(bodyParser());
 app.use(morgan('dev'));
+
+app.get('/loaderio-dd75192dbfebb65220c9b825e4153cec.txt', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'loaderio-dd75192dbfebb65220c9b825e4153cec.txt'));
+});
+
 app.use('/:listingID', express.static('./public/dist'));
 
 app.all('/:listingID/desc', (req, res) => {
